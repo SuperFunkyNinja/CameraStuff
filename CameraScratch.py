@@ -1,12 +1,21 @@
-from picamera import PiCamera
+import picamera
 from time import sleep
+# import math
+import pantilthat
 
-camera = PiCamera()
+camera = picamera.PiCamera()
 camera.rotation = 180
+camera.resolution = (640, 480)
+camera.start_recording('my_video.h264')
+sleep(1)
+pantilthat.pan(-10)
+sleep(1)
+pantilthat.tilt(-10)
+sleep(1)
+pantilthat.pan(10)
+sleep(1)
+pantilthat.tilt(10)
+sleep(1)
+camera.wait_recording(5)
+camera.stop_recording()
 
-camera.start_preview()
-camera.annotate_text = "Hello Marty!"
-camera.start_recording('/home/pi/Desktop/video.h264')
-sleep(5)
-camera.capture('/home/pi/Desktop/image.jpg')
-camera.stop_preview()
