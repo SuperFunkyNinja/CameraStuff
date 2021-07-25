@@ -1,0 +1,2 @@
+python3 WebStream.py
+python3 pantiltweb.py
